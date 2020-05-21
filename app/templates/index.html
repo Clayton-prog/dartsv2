@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Darts Data Dashboard</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	</head>
+	<body>
+	<div class="headline">
+		<h1>Welcome to the Darts Dashboard</h1>
+		<div class="wrapper">
+			<div class="row-item">
+				<div>
+					<h2>Most Seasoned Vet</h2>
+				</div>
+				<div>
+					<h2>Most Likely To Win</h2>
+				</div>
+				<div>
+					<h2>Most Likely To Hit The Bulls Eye</h2>
+				</div>
+			</div>
+<!-- 			<div class="row-item">
+				<h2>Most Likely To Win</h2>
+			</div>
+			<div class="row-item">
+				<h2>Most Likely To Hit The Bulls Eye</h2>
+			</div> -->
+		</div>
+	</div>
+	<header>
+	<div class="wrapper">
+		<div class="item">
+			<h2>Most Wins</h2>
+		</div>
+		<div class="item">
+			<div id="chart"></div>
+		</div>
+		<div class="item">
+			<h2>Winning Percenage</h2>
+		</div>
+		<div class="item">
+			<div id="chart2"></div>
+		</div>
+	</div>
+	<footer id="footer">
+		<h2>Hope you liked it</h2>
+	</footer>
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript">
+        var graphs = {{graphJSON | safe}};
+		Plotly.plot('chart',graphs,{});
+		var graphs2 = {{graphJSON2 | safe}};
+		Plotly.plot('chart2',graphs2,{});
+		window.onresize = function(){
+			Plotly.Plots.resize()
+		}
+	</script>
+	</body>
+</html>

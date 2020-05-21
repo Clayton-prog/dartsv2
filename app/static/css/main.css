@@ -1,0 +1,93 @@
+h1 {
+	text-align: center;
+	color: white;
+	font-size: 500%;
+	font-family: bold;
+}
+
+.headline {
+	background-image:url('../img/background1.jpg');
+	height: 100vh;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+footer {
+	text-align: center;
+	background-color: black;
+	height: 150px;
+	vertical-align: middle;
+}
+
+h2 {
+	color: white;
+	font-size: 24px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+body {
+  background-color: #9e9db3;
+}
+
+div {
+	border: 1px;
+	border-color: white;
+	border-style: dashed;
+}
+
+.wrapper {
+	width: 100%;
+	margin: auto;
+	display: grid;
+}
+
+.item {
+	width: 90%;
+	padding: 10px;
+	background: red;
+	margin: auto;
+	display: grid;
+
+}
+.item:nth-child(even){
+	background: blue;
+}
+
+.row-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+/*.svg-container{
+	width: 100wh;
+}*/
+
+.parallax {*/
+	/* The image used */
+	background-image: url('../img/banner.jpg');
+
+	/* Full height */
+	height: 70vw; 
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.parralax2 {
+	background-color: #cef542;
+	height: 70vh;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: grid;
+	/*background-size: cover;*/
+}

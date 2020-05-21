@@ -12,12 +12,18 @@ h1 {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
+	display: grid;
+	padding-bottom: 30vh;
+}
+
+.primary-headline {
+	padding-bottom: 30vh;
 }
 
 footer {
 	text-align: center;
 	background-color: black;
-	height: 150px;
+	height: 30vh;
 	vertical-align: middle;
 }
 
@@ -28,14 +34,24 @@ h2 {
 	vertical-align: middle;
 }
 
+
+
 body {
   background-color: #9e9db3;
 }
 
-div {
+/*div {
 	border: 1px;
 	border-color: white;
 	border-style: dashed;
+}*/
+
+.player-img {
+    max-width: 60%;
+}
+.player-tag {
+	display: block;
+	text-align: center;
 }
 
 .wrapper {
@@ -50,20 +66,16 @@ div {
 	background: red;
 	margin: auto;
 	display: grid;
-
 }
+
 .item:nth-child(even){
 	background: blue;
 }
 
-.row-item {
+.row-items {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 }
-
-/*.svg-container{
-	width: 100wh;
-}*/
 
 .parallax {*/
 	/* The image used */

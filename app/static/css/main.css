@@ -2,7 +2,8 @@ h1 {
 	text-align: center;
 	color: white;
 	font-size: 500%;
-	font-family: bold;
+	font-family: 'Alfa Slab One', serif;
+	text-shadow: 4px 4px 4px #aaa;
 }
 
 .headline {
@@ -28,6 +29,13 @@ footer {
 }
 
 h2 {
+	color: black;
+	font-size: 24px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+h3 {
 	color: white;
 	font-size: 24px;
 	text-align: center;
@@ -63,7 +71,7 @@ body {
 .item {
 	width: 90%;
 	padding: 10px;
-	background: red;
+	background: white;
 	margin: auto;
 	display: grid;
 }

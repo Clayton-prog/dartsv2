@@ -9,19 +9,6 @@ import plotly
 # from plotly.subplots import make_subplots
 import json
 
-def create_graph(y1, y2):
-	trace = go.Bar(
-    	    x=['clayton', 'leighton'],
-        	y=[y1,y2],
-    	)
-	data = [trace]
-	graphJSON = json.dumps(data, cls=plotly.utils.PlotlyJSONEncoder)
-	return graphJSON
-
-fig = create_graph(1,2)
-fig2 = create_graph(2,1)
-name = 'Clayton'
-
 #Generic Calcualtions
 def sort_the_data(player_series, value_series):
     player_names = pd.Series(player_series)
@@ -31,15 +18,22 @@ def sort_the_data(player_series, value_series):
     return the_data.sort_values(by=['score'], ascending=False)
 
 def trim_the_data(min_three_games, min_one_win, the_data):
+    trimmed_data = the_data
     if(min_one_win == True):
         trimmed_data = the_data.query('score > 0')
-    # if(min_three_games == True):
-    #     # trimmed_data == the_data.query('')
-    #     i = 0
-    #     for i in range(len(players)):
-    #         print(players[i])
-    #         num_games = find_num_games_played(players[i], the_data)
-    #         print(pd.concat([num_games, trimmed_data], axis=1, join='inner'))
+    if(min_three_games == True):
+        player_series = pd.Series(trimmed_data.name)
+        num_games_played = []
+        i = 0
+        for i in range(len(player_series)):
+            num_games_played.append(find_num_games_played(players[i], darts_data))
+        value_series = pd.Series(trimmed_data.score)
+        num_games_series = pd.Series(num_games_played)
+        trimmed_data = pd.concat([player_series, value_series, num_games_series], axis = 1)
+        trimmed_data.columns = ['name', 'score','num_games']
+        # print("trimmed_data: ",trimmed_data)
+        trimmed_data = trimmed_data.query('num_games >= 3')
+        # print(trimmed_data)
     return trimmed_data
 
 def find_num_games_played(players_name, data_frame):
@@ -90,8 +84,6 @@ def build_total_games_won():
         x=sorted_data.name,
         y=sorted_data.score,
     )])
-    # fig.update_layout(
-    #     title='Total Games Won by Player')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -162,7 +154,8 @@ def build_num_percentage(input_number):
             the_percentage.append(num_hit[i]/num_games_played[i])
     the_percentage = pd.Series(the_percentage)
     sorted_data = sort_the_data(players_in_series, the_percentage)
-    sorted_data = trim_the_data(True,True,sorted_data)
+    sorted_data = trim_the_data(True,False,sorted_data)
+    sorted_data = sort_the_data(sorted_data.name,sorted_data.score)
     fig = go.Figure(data=[go.Bar(
         x=sorted_data.name,
         y=sorted_data.score,
@@ -218,7 +211,6 @@ def find_most_seasoned_vet():
     num_games_played_series = pd.Series(num_games_played)
     sorted_data = sort_the_data(players_in_series, num_games_played_series)
     sorted_data = sorted_data.reset_index(drop=True)
-    print('most seasoned vet: ',sorted_data.name[0])
     return sorted_data.name[0]
 
 def find_most_likely_to_win():
@@ -233,9 +225,10 @@ def find_most_likely_to_win():
     players_in_series = pd.Series(players)
     win_percentage_series = pd.Series(player_win_percentage)
     sorted_data = sort_the_data(players_in_series, win_percentage_series)
-    sorted_data = trim_the_data(False,True,sorted_data)
+    sorted_data = trim_the_data(True,True,sorted_data)
+    sorted_data.sort_values(by=['score'], ascending=False)
     sorted_data = sorted_data.reset_index(drop=True)
-    print("most likely to win: ",sorted_data.name[0])
+    print("most likely to win sorted_data: ",sorted_data)
     return sorted_data.name[0]
 
 def find_most_likely_bulls():

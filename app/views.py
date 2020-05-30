@@ -249,6 +249,20 @@ def find_most_likely_bulls():
     # print("most likely to bulls sorted_data: ",sorted_data)
     return sorted_data.name[0]
 
+def find_player_photo(name):
+    file_string = '/static/img/players/'+ name + '.jpg'
+    # if(name == 'Clayton'):
+    #     return '/static/img/players/Clayton.jpg'
+    # if(name == 'Erik'):
+    #     return '/static/img/players/Erik.jpg'
+    # if(name == 'Sam'):
+    #     return '/static/img/players/Sam.jpg'
+    # else:
+    #     return '/static/img/players/Default.jpg'
+    print("file string: ", file_string)
+    return file_string
+
+
 #APP Starts Here
 darts_data = pd.read_csv('DartsLog.csv')
 players = darts_data.player_name.unique()
@@ -283,7 +297,10 @@ def index():
         fifteen_percent_JSON=fifteen_percentage_fig,
         most_seasoned_vet=most_seasoned_vet,
         most_likely_to_win=most_likely_to_win,
-        most_likely_bulls=most_likely_bulls)
+        most_likely_bulls=most_likely_bulls,
+        most_seasoned_vet_pic=find_player_photo(most_seasoned_vet),
+        most_likely_to_win_pic=find_player_photo(most_likely_to_win),
+        most_likely_bulls_pic=find_player_photo(most_likely_bulls))
 
 @app.route("/about")
 def about():

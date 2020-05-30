@@ -31,9 +31,10 @@ def trim_the_data(min_three_games, min_one_win, the_data):
         num_games_series = pd.Series(num_games_played)
         trimmed_data = pd.concat([player_series, value_series, num_games_series], axis = 1)
         trimmed_data.columns = ['name', 'score','num_games']
+        # print("concatanaged dt: ", trimmed_data)
         # print("trimmed_data: ",trimmed_data)
         trimmed_data = trimmed_data.query('num_games >= 3')
-        # print(trimmed_data)
+        # print("trimmed data after num games query: ", trimmed_data)
     return trimmed_data
 
 def find_num_games_played(players_name, data_frame):
@@ -226,9 +227,8 @@ def find_most_likely_to_win():
     win_percentage_series = pd.Series(player_win_percentage)
     sorted_data = sort_the_data(players_in_series, win_percentage_series)
     sorted_data = trim_the_data(True,True,sorted_data)
-    sorted_data.sort_values(by=['score'], ascending=False)
+    sorted_data = sorted_data.sort_values(by=['score'], ascending=False)
     sorted_data = sorted_data.reset_index(drop=True)
-    print("most likely to win sorted_data: ",sorted_data)
     return sorted_data.name[0]
 
 def find_most_likely_bulls():
@@ -244,7 +244,9 @@ def find_most_likely_bulls():
     the_percentage = pd.Series(the_percentage)
     sorted_data = sort_the_data(players_in_series, the_percentage)
     sorted_data = trim_the_data(True,True,sorted_data)
+    sorted_data = sorted_data.sort_values(by=['score'],ascending=False)
     sorted_data = sorted_data.reset_index(drop=True)
+    # print("most likely to bulls sorted_data: ",sorted_data)
     return sorted_data.name[0]
 
 #APP Starts Here

@@ -15,17 +15,20 @@
 				<div>
 					<h3>Most Seasoned Vet</h3>
 					<div class="player-tag">
+						<h3>{{ most_seasoned_vet }}</h3>
 						<img class="player-img" src="/static/img/players/Erik.jpg" alt="Erik">
 					</div>
 				</div>
 				<div>
 					<h3>Most Likely To Win</h3>
+					<h3>{{ most_likely_to_win }}</h3>
 					<div class="player-tag">
 						<img class="player-img" src="/static/img/players/Erik.jpg" alt="Erik">
 					</div>
 				</div>
 				<div>
 					<h3>Most Likely To Hit The Bulls Eye</h3>
+					<h3>{{ most_likely_bulls }}</h3>
 					<div class="player-tag">
 						<img class="player-img" src="/static/img/players/Erik.jpg" alt="Erik">
 					</div>
@@ -122,6 +125,7 @@
 		Plotly.plot('sixteen_percentage_chart',sixteen_percentage_chart,{});
 		var fifteen_percentage_chart = {{fifteen_percent_JSON | safe}};
 		Plotly.plot('fifteen_percentage_chart',fifteen_percentage_chart,{});
+		// var most_seasoned_vet = most_seasoned_vet;
 		window.onresize = function(){
 			Plotly.Plots.resize()
 		}

@@ -65,8 +65,8 @@ def build_total_buls():
         x=sorted_data.name,
         y=sorted_data.score,
         )])
-    fig.update_layout(
-        title='Total Bulls Hit')
+    # fig.update_layout(
+    #     title='Total Bulls Hit')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -90,8 +90,8 @@ def build_total_games_won():
         x=sorted_data.name,
         y=sorted_data.score,
     )])
-    fig.update_layout(
-        title='Total Games Won by Player')
+    # fig.update_layout(
+    #     title='Total Games Won by Player')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -112,8 +112,8 @@ def build_win_percentage():
         x=sorted_data.name,
         y=sorted_data.score,
     )])
-    fig.update_layout(
-        title='Winning Percentage')
+    # fig.update_layout(
+    #     title='Winning Percentage')
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -209,6 +209,51 @@ def find_total_games_played():
     num_games_played = darts_data.game_id.unique()
     return len(num_games_played)
 
+#Supulataves calculations here
+def find_most_seasoned_vet():
+    num_games_played = []
+    for i in range(len(players)):
+        num_games_played.append(find_num_games_played(players[i],darts_data))
+    players_in_series = pd.Series(players)
+    num_games_played_series = pd.Series(num_games_played)
+    sorted_data = sort_the_data(players_in_series, num_games_played_series)
+    sorted_data = sorted_data.reset_index(drop=True)
+    print('most seasoned vet: ',sorted_data.name[0])
+    return sorted_data.name[0]
+
+def find_most_likely_to_win():
+    player_win_percentage = []
+    num_games_played = []
+    num_games_won = []
+    i = 0
+    for i in range(len(players)):
+        num_games_won.append(find_players_games_won(players[i],darts_data))
+        num_games_played.append(find_num_games_played(players[i],darts_data))
+        player_win_percentage.append(num_games_won[i]/num_games_played[i])
+    players_in_series = pd.Series(players)
+    win_percentage_series = pd.Series(player_win_percentage)
+    sorted_data = sort_the_data(players_in_series, win_percentage_series)
+    sorted_data = trim_the_data(False,True,sorted_data)
+    sorted_data = sorted_data.reset_index(drop=True)
+    print("most likely to win: ",sorted_data.name[0])
+    return sorted_data.name[0]
+
+def find_most_likely_bulls():
+    the_percentage = []
+    num_hit = []
+    num_games_played = []
+    i = 0
+    players_in_series = pd.Series(players)
+    for i in range(len(players)):
+        num_games_played.append(find_num_games_played(players[i],darts_data))
+        num_hit.append(find_total_bulls_hit(players[i],darts_data))
+        the_percentage.append(num_hit[i]/num_games_played[i])
+    the_percentage = pd.Series(the_percentage)
+    sorted_data = sort_the_data(players_in_series, the_percentage)
+    sorted_data = trim_the_data(True,True,sorted_data)
+    sorted_data = sorted_data.reset_index(drop=True)
+    return sorted_data.name[0]
+
 #APP Starts Here
 darts_data = pd.read_csv('DartsLog.csv')
 players = darts_data.player_name.unique()
@@ -224,6 +269,9 @@ eighteen_percentage_fig = build_num_percentage(18)
 seventeen_percentage_fig = build_num_percentage(17)
 sixteen_percentage_fig = build_num_percentage(16)
 fifteen_percentage_fig = build_num_percentage(15)
+most_seasoned_vet = find_most_seasoned_vet()
+most_likely_to_win = find_most_likely_to_win()
+most_likely_bulls = find_most_likely_bulls()
 
 @app.route("/")
 def index():
@@ -237,7 +285,10 @@ def index():
         eighteen_percent_JSON=eighteen_percentage_fig,
         seventeen_percent_JSON=seventeen_percentage_fig,
         sixteen_percent_JSON=sixteen_percentage_fig,
-        fifteen_percent_JSON=fifteen_percentage_fig)
+        fifteen_percent_JSON=fifteen_percentage_fig,
+        most_seasoned_vet=most_seasoned_vet,
+        most_likely_to_win=most_likely_to_win,
+        most_likely_bulls=most_likely_bulls)
 
 @app.route("/about")
 def about():

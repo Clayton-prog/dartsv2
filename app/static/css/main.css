@@ -1,7 +1,7 @@
 h1 {
 	text-align: center;
 	color: white;
-	font-size: 500%;
+	font-size: 8vw;
 	font-family: 'Alfa Slab One', serif;
 	text-shadow: 4px 4px 4px #aaa;
 }
@@ -28,21 +28,29 @@ footer {
 	vertical-align: middle;
 }
 
+.footer {
+	padding-top: 12vh;
+	padding-bottom: 12vh;
+	font-size: 9vw;
+
+}
+
 h2 {
 	color: black;
-	font-size: 24px;
+	font-size: 4vh;
 	text-align: center;
 	vertical-align: middle;
 }
 
 h3 {
 	color: white;
-	font-size: 24px;
+	font-size: 4vh;
 	text-align: center;
 	vertical-align: middle;
 }
-
-
+/*.big-text {
+	font-size: 8vh;
+}*/
 
 body {
   background-color: white;
@@ -58,19 +66,24 @@ body {
     max-width: 60%;
 }
 .player-tag {
-	display: block;
+	/*display: block;*/
 	text-align: center;
+	min-width: 253px;
+}
+.player-tag-inner {
+	border-left: 2px solid white;
 }
 
 .wrapper {
 	width: 100%;
 	margin: auto;
 	display: grid;
+	/*padding-bottom: 10vh;*/
 }
 
 .item {
 	width: 90%;
-	padding: 10px;
+	padding: 3%;
 	background: white;
 	margin: auto;
 	display: grid;
@@ -80,9 +93,25 @@ body {
 	background: blue;
 }
 
-.row-items {
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
+@media screen and (min-width: 681px){
+	.row-items {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.row-items {
+		overflow-x: scroll;
+		overflow-y:	hidden;
+		white-space: nowrap;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.scrolling-item {
+		display: inline-block;
+	}
 }
 
 .parallax {*/

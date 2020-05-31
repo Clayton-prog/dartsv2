@@ -60,8 +60,13 @@ def build_total_buls():
         x=sorted_data.name,
         y=sorted_data.score,
         )])
-    # fig.update_layout(
-    #     title='Total Bulls Hit')
+    fig.update_layout(
+        margin=dict(
+            l=10,
+            r=10,
+            b=100,
+            t=80,
+            pad=1))
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -85,6 +90,13 @@ def build_total_games_won():
         x=sorted_data.name,
         y=sorted_data.score,
     )])
+    fig.update_layout(
+        margin=dict(
+            l=10,
+            r=10,
+            b=100,
+            t=80,
+            pad=1))
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -105,8 +117,13 @@ def build_win_percentage():
         x=sorted_data.name,
         y=sorted_data.score,
     )])
-    # fig.update_layout(
-    #     title='Winning Percentage')
+    fig.update_layout(
+        margin=dict(
+            l=10,
+            r=10,
+            b=100,
+            t=80,
+            pad=1))
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -161,6 +178,13 @@ def build_num_percentage(input_number):
         x=sorted_data.name,
         y=sorted_data.score,
     )])
+    fig.update_layout(
+        margin=dict(
+            l=10,
+            r=10,
+            b=100,
+            t=80,
+            pad=1))
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
@@ -251,17 +275,8 @@ def find_most_likely_bulls():
 
 def find_player_photo(name):
     file_string = '/static/img/players/'+ name + '.jpg'
-    # if(name == 'Clayton'):
-    #     return '/static/img/players/Clayton.jpg'
-    # if(name == 'Erik'):
-    #     return '/static/img/players/Erik.jpg'
-    # if(name == 'Sam'):
-    #     return '/static/img/players/Sam.jpg'
-    # else:
-    #     return '/static/img/players/Default.jpg'
     print("file string: ", file_string)
     return file_string
-
 
 #APP Starts Here
 darts_data = pd.read_csv('DartsLog.csv')

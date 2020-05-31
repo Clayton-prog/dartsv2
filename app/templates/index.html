@@ -6,30 +6,31 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 	</head>
 	<body>
 	<div class="headline">
 		<h1 class="primary-headline">Welcome to the Darts Dashboard</h1>
 		<div class="wrapper">
 			<div class="row-items">
-				<div>
+				<div class="scrolling-item">
 					<h3>Most Seasoned Vet</h3>
 					<div class="player-tag">
 						<h3>{{ most_seasoned_vet }}</h3>
 						<img class="player-img" src={{ most_seasoned_vet_pic }} alt="Erik">
 					</div>
 				</div>
-				<div>
+				<div class="scrolling-item player-tag player-tag-inner">
 					<h3>Most Likely To Win</h3>
 					<h3>{{ most_likely_to_win }}</h3>
-					<div class="player-tag">
+					<div>
 						<img class="player-img" src={{  most_likely_to_win_pic  }} alt="Erik">
 					</div>
 				</div>
-				<div>
-					<h3>Most Likely To Hit The Bulls Eye</h3>
+				<div class="scrolling-item player-tag player-tag-inner">
+					<h3>Best At Bulls</h3>
 					<h3>{{ most_likely_bulls }}</h3>
-					<div class="player-tag">
+					<div>
 						<img class="player-img" src={{  most_likely_bulls_pic  }} alt="Erik">
 					</div>
 				</div>
@@ -99,7 +100,7 @@
 		</div>
 	</div>
 	<footer id="footer">
-		<h3>Hope you liked it</h3>
+		<h3 class="footer">Hope you liked it</h3>
 	</footer>
 	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>

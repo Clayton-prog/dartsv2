@@ -275,7 +275,7 @@ def find_most_likely_bulls():
 
 def find_player_photo(name):
     file_string = '/static/img/players/'+ name + '.jpg'
-    print("file string: ", file_string)
+    # print("file string: ", file_string)
     return file_string
 
 #APP Starts Here

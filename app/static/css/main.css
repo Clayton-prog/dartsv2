@@ -47,6 +47,7 @@ h3 {
 	font-size: 4vh;
 	text-align: center;
 	vertical-align: middle;
+	text-shadow: 2px 2px 2px #aaa;
 }
 /*.big-text {
 	font-size: 8vh;

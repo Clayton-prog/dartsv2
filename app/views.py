@@ -278,6 +278,12 @@ def find_player_photo(name):
     # print("file string: ", file_string)
     return file_string
 
+def find_king_of_the_hill(data_frame):
+    player_won_game = data_frame.query('game_won=="Y"')
+    winning_players = pd.Series(player_won_game.player_name)
+    winning_players = winning_players.reset_index(drop=True)
+    return winning_players[len(winning_players)-1]
+
 #APP Starts Here
 darts_data = pd.read_csv('DartsLog.csv')
 players = darts_data.player_name.unique()
@@ -296,6 +302,7 @@ fifteen_percentage_fig = build_num_percentage(15)
 most_seasoned_vet = find_most_seasoned_vet()
 most_likely_to_win = find_most_likely_to_win()
 most_likely_bulls = find_most_likely_bulls()
+king_of_the_hill = find_king_of_the_hill(darts_data)
 
 @app.route("/")
 def index():
@@ -315,7 +322,9 @@ def index():
         most_likely_bulls=most_likely_bulls,
         most_seasoned_vet_pic=find_player_photo(most_seasoned_vet),
         most_likely_to_win_pic=find_player_photo(most_likely_to_win),
-        most_likely_bulls_pic=find_player_photo(most_likely_bulls))
+        most_likely_bulls_pic=find_player_photo(most_likely_bulls),
+        king_of_the_hill=king_of_the_hill,
+        king_of_the_hill_pic=find_player_photo(king_of_the_hill))
 
 @app.route("/about")
 def about():

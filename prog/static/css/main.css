@@ -1,0 +1,152 @@
+html body {
+	margin: 0;
+	height: 100%;
+}
+
+h1 {
+	text-align: center;
+	color: white;
+	font-size: 8vw;
+	font-family: 'Alfa Slab One', serif;
+	text-shadow: 4px 4px 4px #aaa;
+}
+
+.headline {
+
+	background: url('../img/background1.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+/*	background-image:url('../img/background1.jpg');
+	height: 100vh;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;*/
+	display: grid;
+	padding-bottom: 30vh;
+}
+
+.primary-headline {
+	padding-bottom: 30vh;
+}
+
+footer {
+	text-align: center;
+	background-color: black;
+	height: 30vh;
+	vertical-align: middle;
+}
+
+.footer {
+	padding-top: 12vh;
+	padding-bottom: 12vh;
+	font-size: 9vw;
+
+}
+
+h2 {
+	color: black;
+	font-size: 4vh;
+	text-align: center;
+	vertical-align: middle;
+}
+
+h3 {
+	color: white;
+	font-size: 4vh;
+	text-align: center;
+	vertical-align: middle;
+	text-shadow: 2px 2px 2px #aaa;
+}
+
+body {
+  background-color: white;
+}
+
+/*div {
+	border: 1px;
+	border-color: white;
+	border-style: dashed;
+}*/
+
+.player-img {
+    max-width: 60%;
+}
+.player-tag {
+	/*display: block;*/
+	text-align: center;
+}
+.player-tag-inner {
+	border-left: 2px solid white;
+}
+
+.wrapper {
+	width: 100%;
+	margin: auto;
+	display: grid;
+	/*padding-bottom: 10vh;*/
+}
+
+.item {
+	width: 90%;
+	padding: 3%;
+	background: white;
+	margin: auto;
+	display: grid;
+}
+
+.item:nth-child(even){
+	background: blue;
+}
+
+@media screen and (min-width: 681px){
+	.row-items {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.row-items {
+		overflow-x: scroll;
+		overflow-y:	hidden;
+		white-space: nowrap;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	.scrolling-item {
+		display: inline-block;
+		min-width: 260px;
+		min-height: 315px;
+	}
+}
+
+.parallax {*/
+	/* The image used */
+	background-image: url('../img/banner.jpg');
+
+	/* Full height */
+	height: 70vw; 
+
+	/* Create the parallax scrolling effect */
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: grid;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.parralax2 {
+	background-color: #cef542;
+	height: 70vh;
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: grid;
+	/*background-size: cover;*/
+}
